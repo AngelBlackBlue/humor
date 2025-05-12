@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13.21-alpine3.20
+    container_name: postgres_chistes_sql
+    restart: always
+    environment:
+      POSTGRES_USER: user_angel
+      POSTGRES_PASSWORD: chistes_password
+      POSTGRES_DB: chistes_sql
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5433:5432"
